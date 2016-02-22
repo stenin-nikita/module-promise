@@ -1,6 +1,13 @@
 {
-  "name"    : "module-promise",
-  "version" : "0.1.0",
-  "main"    : "lib/promise.js",
-  "ignore"  : ["**/.*", "node_modules", "benchmarks", "test", "Makefile", "package.json"]
+  "name": "module-promise",
+  "version": "0.1.1",
+  "main": "lib/promise.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "benchmarks",
+    "test",
+    "Makefile",
+    "package.json"
+  ]
 }
