@@ -5,4 +5,4 @@ benchmark:
 	node benchmarks/comparison.js
 
 min:
-	node ./node_modules/uglify-js/bin/uglifyjs lib/Promise.js > Promise.min.js
+	node ./node_modules/uglify-js/bin/uglifyjs lib/promise.js > promise.min.js
