@@ -1,0 +1,22 @@
+{
+    "name" : "module-promise",
+    "version" : "0.1.0",
+    "description" : "DOM Promise and Promises/A+ implementation for Node.js and browsers",
+    "keywords" : ["nodejs", "browser", "async", "promise", "dom", "a+"],
+    "author" : "Nikita Stenin <stenin.nikita@gmail.com>",
+    "contributors" : [{
+        "name"  : "Nikita Stenin",
+        "email" : "stenin.nikita@gmail.com"
+    }],
+    "dependencies": {},
+    "devDependencies": {
+        "istanbul" : "",
+        "uglify-js" : "1.3.4",
+        "promises-aplus-tests": "2.1.0"
+    },
+    "main" : "lib/Promise",
+    "engines" : { "node" : ">= 0.4.0" },
+    "scripts" : {
+        "test" : "./node_modules/istanbul/lib/cli.js test test/utils/runner.js"
+    }
+}

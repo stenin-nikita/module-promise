@@ -1,0 +1,14 @@
+{
+  "name": "promises-library-speed-comparison",
+  "version": "0.1.0",
+  "dependencies": {
+    "benchmark": "",
+    "cliff": "",
+    "bluebird": "3.0.2",
+    "pinkie-promise": "1.0.0",
+    "q": "1.0.1",
+    "when": "3.5.0",
+    "vow": ""
+  },
+  "private": true
+}

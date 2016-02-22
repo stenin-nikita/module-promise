@@ -1,0 +1,6 @@
+.*
+/benchmarks
+/test
+/bower.json
+/CHANGELOG.md
+/Makefile
