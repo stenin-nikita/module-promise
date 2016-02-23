@@ -25,7 +25,7 @@ var cliff = require('cliff'),
                 topPromises.push(defer.promise);
             });
 
-            PromiseModule.all(topPromises).then(function() {
+            promiseModule.all(topPromises).then(function() {
                 deferred.resolve();
             });
 
