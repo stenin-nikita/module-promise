@@ -1,6 +1,6 @@
 {
   "name": "module-promise",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DOM Promise and Promises/A+ implementation for Node.js and browsers",
   "keywords": [
     "nodejs",
