@@ -8,32 +8,6 @@ var cliff = require('cliff'),
     Bluebird = require('bluebird'),
     Pinkie = require('pinkie-promise'),
     tests = {
-        'Promise module' : function(deferred) {
-            var toResolve = [],
-                topPromises = [];
-
-            Object.keys(data).forEach(function(key) {
-                var defer = promiseModule.defer();
-                promiseModule.all(data[key].map(function(val) {
-                        var defer = promiseModule.defer();
-                        toResolve.push({ defer : defer, val : val });
-                        return defer.promise;
-                    }))
-                    .then(function(val) {
-                        defer.resolve(val);
-                    });
-                topPromises.push(defer.promise);
-            });
-
-            promiseModule.all(topPromises).then(function() {
-                deferred.resolve();
-            });
-
-            toResolve.forEach(function(obj) {
-                obj.defer.resolve(obj.val);
-            });
-        },
-
         'Q' : function(deferred) {
             var toResolve = [],
                 topPromises = [];
@@ -120,18 +94,20 @@ var cliff = require('cliff'),
 
         'ES2015 Promise' : function(deferred) {
             var toResolve = [],
-                topPromises = Object.keys(data).map(function(key) {
-                    var defer = Promise.defer();
-                    Promise.all(data[key].map(function(val) {
-                            var defer = Promise.defer();
-                            toResolve.push({ defer : defer, val : val });
-                            return defer.promise;
-                        }))
-                        .then(function(val) {
-                            defer.resolve(val);
-                        });
-                    return defer.promise;
-                });
+                topPromises = [];
+
+            Object.keys(data).forEach(function(key) {
+                var defer = Promise.defer();
+                Promise.all(data[key].map(function(val) {
+                        var defer = Promise.defer();
+                        toResolve.push({ defer : defer, val : val });
+                        return defer.promise;
+                    }))
+                    .then(function(val) {
+                        defer.resolve(val);
+                    });
+                topPromises.push(defer.promise);
+            });
 
             Promise.all(topPromises).then(function() {
                 deferred.resolve();
@@ -144,18 +120,20 @@ var cliff = require('cliff'),
 
         'Vow' : function(deferred) {
             var toResolve = [],
-                topPromises = Object.keys(data).map(function(key) {
-                    var defer = Vow.defer();
-                    Vow.all(data[key].map(function(val) {
-                            var defer = Vow.defer();
-                            toResolve.push({ defer : defer, val : val });
-                            return defer.promise();
-                        }))
-                        .then(function(val) {
-                            defer.resolve(val);
-                        });
-                    return defer.promise();
-                });
+                topPromises = [];
+
+            Object.keys(data).forEach(function(key) {
+                var defer = Vow.defer();
+                Vow.all(data[key].map(function(val) {
+                        var defer = Vow.defer();
+                        toResolve.push({ defer : defer, val : val });
+                        return defer.promise();
+                    }))
+                    .then(function(val) {
+                        defer.resolve(val);
+                    });
+                topPromises.push(defer.promise());
+            });
 
             Vow.all(topPromises).then(function() {
                 deferred.resolve();
@@ -184,6 +162,32 @@ var cliff = require('cliff'),
             });
 
             When.all(topPromises).then(function() {
+                deferred.resolve();
+            });
+
+            toResolve.forEach(function(obj) {
+                obj.defer.resolve(obj.val);
+            });
+        },
+
+        'promiseModule' : function(deferred) {
+            var toResolve = [],
+                topPromises = [];
+
+            Object.keys(data).forEach(function(key) {
+                var defer = promiseModule.defer();
+                promiseModule.all(data[key].map(function(val) {
+                        var defer = promiseModule.defer();
+                        toResolve.push({ defer : defer, val : val });
+                        return defer.promise;
+                    }))
+                    .then(function(val) {
+                        defer.resolve(val);
+                    });
+                topPromises.push(defer.promise);
+            });
+
+            promiseModule.all(topPromises).then(function() {
                 deferred.resolve();
             });
 
@@ -221,9 +225,7 @@ Object.keys(tests).forEach(function(name) {
     var i = 0;
     suite.add(
         name,
-        function(deferred) {
-            tests[name](deferred);
-        },
+        tests[name],
         {
             defer      : true,
             onStart    : function() {
