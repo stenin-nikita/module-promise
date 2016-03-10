@@ -14,3 +14,69 @@
 [npm-url]: https://npmjs.org/package/module-promise
 [downloads-image]: https://img.shields.io/npm/dm/module-promise.svg?style=flat
 [downloads-url]: https://npmjs.org/package/module-promise
+
+Getting Started
+---
+### Install with NPM
+    $ npm install module-promise
+### Install with Bower
+    $ bower install module-promise
+### In Browsers
+```html
+<script type="text/javascript" src="promise.min.js"></script>
+```
+Usage
+---
+```js
+// Node.js
+var Promise = require('module-promise');
+
+// Global Window in Browsers
+var Promise = Core.Promise;
+
+// RequireJS
+require('Core.Promise', function(Promise){
+    // do something
+});
+
+// Yandex modules
+modules.require('Core.Promise', function(Promise){
+    // do something
+});
+```
+### new Promise(resolver)
+```js
+var doSomethingAsync = new Promise(function(resolve, reject, notify){
+    // resolve('ok');
+    // reject(new Error('Custom error'));
+    // notify('val');
+});
+
+doSomethingAsync.then(
+    function() {}, // onResolved
+    function() {}, // onRejected
+    function() {}  // onNotified
+);
+```
+### Promise.defer
+```js
+function doSomethingAsync() {
+    var deferred = Promise.defer();
+
+    // defer.resolve('ok');
+    // defer.reject(new Error('Custom error'));
+    // defer.notify('val');
+
+    return deferred.promise;
+}
+
+doSomethingAsync().then(
+    function() {}, // onResolved
+    function() {}, // onRejected
+    function() {}  // onNotified
+);
+```
+
+License
+---
+The Promise module is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
