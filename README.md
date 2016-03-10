@@ -63,9 +63,9 @@ doSomethingAsync.then(
 function doSomethingAsync() {
     var deferred = Promise.defer();
 
-    // defer.resolve('ok');
-    // defer.reject(new Error('Custom error'));
-    // defer.notify('val');
+    // deferred.resolve('ok');
+    // deferred.reject(new Error('Custom error'));
+    // deferred.notify('val');
 
     return deferred.promise;
 }
